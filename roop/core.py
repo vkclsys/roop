@@ -59,9 +59,9 @@ def parse_args() -> None:
 
 
 
-    roop.globals.source_path = source_path
-    roop.globals.target_path = target_path
-    roop.globals.output_path = normalize_output_path(roop.globals.source_path, roop.globals.target_path, output_path)
+    roop.globals.source_path_temp = source_path
+    roop.globals.target_path_temp = target_path
+    roop.globals.output_path_temp = normalize_output_path(roop.globals.source_path, roop.globals.target_path, output_path)
     roop.globals.headless = roop.globals.source_path is not None and roop.globals.target_path is not None and roop.globals.output_path is not None
     roop.globals.frame_processors = args.frame_processor
     roop.globals.keep_fps = args.keep_fps
@@ -139,13 +139,13 @@ def start() -> None:
     for i in range(2):
         print("i-->" , i)
         if i==0:
-            roop.globals.source_path = roop.globals.source_path + "Female_1.png"
-            roop.globals.target_path = roop.globals.target_path + "face_2.mp4"
-            roop.globals.output_path = roop.globals.output_path + "vinay_test_1.mp4"
+            roop.globals.source_path = roop.globals.source_path_temp + "Female_1.png"
+            roop.globals.target_path = roop.globals.target_path_temp + "face_2.mp4"
+            roop.globals.output_path = roop.globals.output_path_temp + "vinay_test_1.mp4"
         if i==1:
-            roop.globals.source_path = roop.globals.source_path + "Female_1.png"
-            roop.globals.target_path = roop.globals.target_path + "real_1.mp4"
-            roop.globals.output_path = roop.globals.output_path + "vinay_test_2.mp4"
+            roop.globals.source_path = roop.globals.source_path_temp + "Female_1.png"
+            roop.globals.target_path = roop.globals.target_path_temp + "real_1.mp4"
+            roop.globals.output_path = roop.globals.output_path_temp + "vinay_test_2.mp4"
 
 
         for frame_processor in get_frame_processors_modules(roop.globals.frame_processors):
