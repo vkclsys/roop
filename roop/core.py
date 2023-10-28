@@ -61,8 +61,8 @@ def parse_args() -> None:
 
     roop.globals.source_path_temp = source_path
     roop.globals.target_path_temp = target_path
-    roop.globals.output_path_temp = normalize_output_path(roop.globals.source_path, roop.globals.target_path, output_path)
-    roop.globals.headless = roop.globals.source_path is not None and roop.globals.target_path is not None and roop.globals.output_path is not None
+    roop.globals.output_path_temp = normalize_output_path(roop.globals.source_path_temp, roop.globals.target_path_temp, output_path)
+    roop.globals.headless = roop.globals.source_path_temp is not None and roop.globals.target_path_temp is not None and roop.globals.output_path_temp is not None
     roop.globals.frame_processors = args.frame_processor
     roop.globals.keep_fps = args.keep_fps
     roop.globals.keep_frames = args.keep_frames
