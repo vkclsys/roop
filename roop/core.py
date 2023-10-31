@@ -138,7 +138,7 @@ def update_status(message: str, scope: str = 'ROOP.CORE') -> None:
 
 def start() -> None:
 
-    with open('/content/output.json', 'r') as json_file:
+    with open('/kaggle/working/output.json', 'r') as json_file:
         data = json.load(json_file)
 
     num_sets = len(data)
