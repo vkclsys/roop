@@ -139,8 +139,8 @@ def update_status(message: str, scope: str = 'ROOP.CORE') -> None:
 def start() -> None:
     
 
-    with open(roop.globals.source_path_temp, 'r') as json_file:
-        data = json.load(roop.globals.source_path_temp)
+    with open('/content/output.json', 'r') as json_file:
+        data = json.load('/content/output.json')
 
     num_sets = len(data)
 
