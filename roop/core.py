@@ -17,6 +17,7 @@ import onnxruntime
 import tensorflow
 import roop.globals
 import roop.metadata
+import json
 import roop.ui as ui
 from roop.predictor import predict_image, predict_video
 from roop.processors.frame.core import get_frame_processors_modules
@@ -136,18 +137,21 @@ def update_status(message: str, scope: str = 'ROOP.CORE') -> None:
         ui.update_status(message)
 
 def start() -> None:
-    for i in range(2):
+    
+
+    with open(roop.globals.source_path_temp, 'r') as json_file:
+        data = json.load(roop.globals.source_path_temp)
+
+    num_sets = len(data)
+
+    print(f'There are {num_sets} sets in the JSON file.')
+    for i in len(data):
         print("i-->" , i)
-        if i==0:
-            roop.globals.source_path = roop.globals.source_path_temp + "Female_1.png"
-            roop.globals.target_path = roop.globals.target_path_temp + "face_2.mp4"
-            roop.globals.output_path = roop.globals.output_path_temp + "vinay_test_1.mp4"
-        if i==1:
-            roop.globals.source_path = roop.globals.source_path_temp + "Female_1.png"
-            roop.globals.target_path = roop.globals.target_path_temp + "real_1.mp4"
-            roop.globals.output_path = roop.globals.output_path_temp + "vinay_test_2.mp4"
-
-
+        for entry in data:
+            roop.globals.source_path = entry.get('Refernece_img', '')
+            roop.globals.target_path = entry.get('reference_video', '')
+            roop.globals.output_path = entry.get('output_video', '')
+    
         for frame_processor in get_frame_processors_modules(roop.globals.frame_processors):
             if not frame_processor.pre_start():
                 return
