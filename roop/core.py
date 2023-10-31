@@ -150,6 +150,12 @@ def start() -> None:
             roop.globals.source_path = entry.get('Refernece_img', '')
             roop.globals.target_path = entry.get('reference_video', '')
             roop.globals.output_path = entry.get('output_video', '')
+
+        print(roop.globals.source_path)
+
+        print(roop.globals.target_path)
+        
+        print(roop.globals.output_path)
     
         for frame_processor in get_frame_processors_modules(roop.globals.frame_processors):
             if not frame_processor.pre_start():
