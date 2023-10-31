@@ -144,7 +144,7 @@ def start() -> None:
     num_sets = len(data)
 
     print(f'There are {num_sets} sets in the JSON file.')
-    for i in len(data):
+    for i in num_sets:
         print("i-->" , i)
         for entry in data:
             roop.globals.source_path = entry.get('Refernece_img', '')
