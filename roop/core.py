@@ -144,23 +144,22 @@ def start() -> None:
     num_sets = len(data)
 
     print(f'There are {num_sets} sets in the JSON file.')
-    for i in range(num_sets):
-        print("i-->" , i)
-        for entry in data:
-            roop.globals.source_path = entry.get('Refernece_img', '')
-            roop.globals.target_path = entry.get('reference_video', '')
-            roop.globals.output_path = entry.get('output_video', '')
+  
+    for entry in data:
+        roop.globals.source_path = entry.get('Refernece_img', '')
+        roop.globals.target_path = entry.get('reference_video', '')
+        roop.globals.output_path = entry.get('output_video', '')
 
         print(roop.globals.source_path)
 
         print(roop.globals.target_path)
-        
+            
         print(roop.globals.output_path)
-    
+        
         for frame_processor in get_frame_processors_modules(roop.globals.frame_processors):
             if not frame_processor.pre_start():
                 return
-        # process image to image
+            # process image to image
         if has_image_extension(roop.globals.target_path):
             if predict_image(roop.globals.target_path):
                 destroy()
@@ -189,7 +188,7 @@ def start() -> None:
         else:
             update_status('Extracting frames with 30 FPS...')
             extract_frames(roop.globals.target_path)
-        # process frame
+         # process frame
         temp_frame_paths = get_temp_frame_paths(roop.globals.target_path)
         if temp_frame_paths:
             for frame_processor in get_frame_processors_modules(roop.globals.frame_processors):
