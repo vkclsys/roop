@@ -137,6 +137,7 @@ def update_status(message: str, scope: str = 'ROOP.CORE') -> None:
         ui.update_status(message)
 
 def start() -> None:
+    import json
     
 
     with open('/content/output.json', 'r') as json_file:
